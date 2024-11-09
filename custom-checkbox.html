@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Accessible Checkbox - Nicholas Evans</title>
+  <style>
+    /* Uncomment to hide native checkbox */
+    /*
+    .native-checkbox {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    */
+
+    .custom-checkbox {
+      display: inline-flex;
+      width: 24px;
+      height: 24px;
+      border: 2px solid black;
+      border-radius: 6px;
+      position: relative;
+    }
+
+    .custom-checkbox .checkmark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      transform: translate(-50%, -50%) scale(0);
+    }
+
+    /* Respond to native checkbox states */
+    .native-checkbox:checked + .custom-checkbox .checkmark {
+      background-color: black;
+      transform: translate(-50%, -50%) scale(1);
+      color: white;
+    }
+
+    .native-checkbox:focus-visible + .custom-checkbox {
+      outline: 3px solid blue;
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+<input type="checkbox" id="nativeCheckbox" class="native-checkbox" />
+<!-- Wrapping the custom checkbox in the native checkbox's label allows us to toggle the native checkbox's checked state -->
+<label for="nativeCheckbox" class="native-checkbox-label custom-checkbox">
+  <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+    <rect width="256" height="256" fill="none"></rect>
+    <polyline
+            points="216 72.005 104 184 48 128.005"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="16">
+    </polyline>
+  </svg>
+</label>
+</body>
+</html>
